@@ -1,3 +1,4 @@
+
 <#assign ServletUtils = statics["org.riotfamily.common.web.support.ServletUtils"] />
 
 <@template.set bodyClass="fullwidth screen" />
@@ -28,7 +29,11 @@
 
 		<script type="text/javascript" language="JavaScript">
 			var list = new RiotList('${controlListState.key}');
-			list.render('list');
+			<#if controlListState.parentId??>
+				list.render('list', null, '${controlListState.parentId}', null);
+			<#else>
+				list.render('list');
+			</#if>
 
 			var multiList = new RiotMultiList(list);
 			multiList.wire('mainList');

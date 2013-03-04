@@ -22,6 +22,7 @@ import org.riotfamily.common.util.ResourceUtils;
 import org.riotfamily.common.web.mvc.mapping.HandlerUrlUtils;
 import org.riotfamily.core.dao.RiotDao;
 import org.riotfamily.core.screen.AbstractRiotScreen;
+import org.riotfamily.core.screen.DefaultScreenContext;
 import org.riotfamily.core.screen.ListScreen;
 import org.riotfamily.core.screen.RiotScreen;
 import org.riotfamily.core.screen.ScreenContext;
@@ -74,8 +75,9 @@ public class MultiTreeListScreen extends AbstractRiotScreen implements Controlle
 			HttpServletResponse response) throws Exception {
 
 		ScreenContext screenContext = ScreenContext.Binding.get(request);
+		ScreenContext controlScreenContext = new DefaultScreenContext(controlListScreen, request, null, screenContext.getObjectId(), false);
 		ChooserSettings chooserSettings = new ChooserSettings(request);
-		ListState controlState = controlListScreen.getOrCreateListState(request, screenContext, chooserSettings);
+		ListState controlState = controlListScreen.getOrCreateListState(request, controlScreenContext, chooserSettings);
 		//ListState mainState = mainListScreen.getOrCreateListState(request, screenContext, chooserSettings);
 
 		ModelAndView mv = new ModelAndView(viewName);
