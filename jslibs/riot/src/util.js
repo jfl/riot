@@ -255,3 +255,12 @@ var RElement = {
 	}
 })();
 
+window.Util = window.Util || {
+	
+	addParameter : function(url, name, value) {
+		var result = url + ((url.indexOf('?') === -1) ? '?' : '&') + name;
+		return result + (value ? '=' + encodeURIComponent(value) : '');
+	}
+
+}
+
